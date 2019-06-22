@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
+    <title>ToDoList</title>
+        <link rel="stylesheet" href="/static/css/cal-heatmap.css" type="text/css">
+     <link rel="stylesheet" href="/static/css/cal-month-make.css">
+    <link rel="stylesheet" href="/static/css/mday.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="/static/js/echarts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="/static/js/cal-heatmap.min.js"></script>
+    <script src="/static/js/china.js"></script>
+    <script src="/static/js/mday-cal-month.js"></script>
+     <script src="/static/js/mday.js"></script>
+</head>
+<body>
+{% csrf_token %}
+<div class="container">
+<div class="todo-app">
+    <h1>todos</h1>
+    <div class="todo-header">
+        <input class="add-todo" id="add-todo" type="text" placeholder="what needs to be done?">
+    </div>
+    <div class="todo-content">
+        <input type="checkbox" class="toggle-all">
+        <ul class="todo-list">
+            {% for item in item_list %}
+                {% ifequal item.status 0 %}
+            <li> <input type="checkbox">
+            {% else %}
+                <li class="completed">
+                    <input type="checkbox" checked>
+                {% endifequal %}
+                <input type="text" value="{{ item.content }}" readonly>
+                <button class="destroy"></button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="row">
+        <div class="todo-sum">1 items left</div>
+        <div class="todo-filter">
+            <ul>
+                <li class="filter-selected">All</li>
+                <li>Todo</li>
+                <li>Did</li>
+            </ul>
+        </div>
+        </div>
+        <div class="row">
+        <div id="clear-all">clear all</div>
+        <div id="clear-completed">clear completed</div>
+        </div>
+    </div>
+</div>
+<div class="done-panel">
+<div class="todo-app">
+    <div class="map-header">{{ event_sum }} events have been done in the last year!</div>
+    <div id="cal-heatmap"></div>
+</div></div>
+
+            <div class="todo-app">
+                <div id="box">
+                </div>
+            </div>
+
+
+<div id="calendar-panel"></div>
+</div>
+</body>
+</html>

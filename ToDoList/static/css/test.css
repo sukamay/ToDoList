@@ -1,0 +1,30 @@
+#list {
+    color: lightblue;
+    padding-left: 25px;
+}
+
+#list li:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+button {
+    width: 300px;
+    height: 48px;
+    margin-bottom: 5px;
+}
+
+#bg {
+    padding: 30px;
+    background-color: #bb0;
+}
+
+.car{}
+.wheel, .door, .glass, .body, .metal, .chassis
+{ padding-left: 20px;}
+
+.highlight{
+    color: red;
+}
+
+

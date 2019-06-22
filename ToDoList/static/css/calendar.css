@@ -1,0 +1,793 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#calendar {
+    margin: 10px;
+}
+
+.calendar {
+    position: relative;
+    font-family: "Chinese Quote", "Microsoft YaHei";
+    font-size: 14px;
+}
+
+
+.calendar-header {
+    padding: 11px 16px 11px 0;
+    text-align: right;
+}
+
+.calendar-select {
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    outline: 0;
+}
+
+.calendar-table {
+    width: 100%;
+    height: 100%;
+}
+
+.calendar-column-header,
+.calendar-cell {
+    width: 14%
+}
+
+.calendar-column-header {
+    font-weight: 400;
+    text-align: right;
+    padding-right: 12px;
+}
+
+.calendar-table {
+    table-layout: fixed;
+}
+
+.calendar-cell {
+    color: rgba(0, 0, 0, 0.65);
+    position: relative;
+}
+
+
+
+.calendar-cell.calendar-last-month-cell,
+.calendar-cell.calendar-next-month-cell {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.calendar-date {
+    padding: 4px 8px;
+    margin: 0 4px;
+    border-top: 2px solid #e8e8e8;
+}
+
+.calendar-cell.calendar-thisMonth .calendar-date,
+.calendar-cell.calendar-today .calendar-date {
+    border-top-color: #1890ff;
+    background-color: #e6f7ff;
+}
+
+.calendar-date:hover {
+    background: #e6f7ff;
+}
+
+
+.calendar-value {
+    text-align: center;
+}
+
+.calendar-content {
+    height: 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: static;
+    width: auto;
+    left: auto;
+    bottom: auto;
+}
+
+
+
+
+.calendar-select {
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.btn.calendar-select-active {
+    border-color: #40a9ff;
+    z-index: 2;
+}
+
+.calendar-select:first-child {
+    margin-right: 10px;
+}
+
+.calendar-year-select,
+.calendar-month-select,
+.calendar-add-select{
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+}
+
+.calendar-year-select:hover,
+.calendar-month-select:hover,
+.calendar-add-select:hover{
+    border-color: #40a9ff;
+}
+
+.calendar-year-text,
+.calendar-month-text,
+.calendar-add-text{
+    margin: 0 10px;
+    line-height: 28px;
+}
+
+.calendar-icon {
+    margin: 0 10px 0 0;
+}
+
+.calendar-icon * {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+    float: left;
+    padding: 5px 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.btn-group {
+    float: left;
+    display: inline;
+    padding: 0 8px;
+}
+
+.btn-group > .btn {
+    position: relative;
+    float: left;
+}
+
+.btn-group > .btn:hover {
+    z-index: 2;
+    border-color: #40a9ff;
+}
+
+.btn-group .btn + .btn {
+    margin-left: -1px;
+}
+
+.btn-group > .btn:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group > .btn:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+/*dropdown-menu*/
+ul.dropdown-month, .dropdown-month li,
+ul.dropdown-year, .dropdown-year li {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-month.open,
+.dropdown-year.open {
+    display: inline-block;
+    margin-top: 1px;
+    width: 100%;
+}
+
+.dropdown-month,
+.dropdown-year {
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #fff;
+    width: 50px;
+    border: 1px solid #eee;
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.175);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    z-index: 999;
+}
+
+.dropdown-month .month-item,
+.dropdown-year .year-item {
+    font-size: 12px;
+    position: relative;
+    display: block;
+    padding: 5px 2px;
+    line-height: 20px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.65);
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+}
+
+.month-item:hover,
+.year-item:hover {
+    background: #e6f7ff;
+}
+
+.year-item.active {
+    background-color: #fafafa;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+}
+/*自定义事件样式*/
+ul.events li {
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 1px 2px;
+    position: relative;
+}
+
+ul.events li span {
+    margin-left: 5px;
+}
+
+ul.events li:hover{
+    background-color: lightskyblue;
+}
+
+/*ul.events li:before {*/
+    /*content: "*"*/
+/*}*/
+
+ul.events li .little-head{
+    height: 10px;
+    width: 10px;
+    border: 1px transparent;
+    border-radius: 50%;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+ul.events li .q3{
+    /*background-color: rgba(255, 0, 0, 0.8);*/
+    background-color: orange;
+}
+
+ul.events li .q2{
+    background-color: yellow;
+}
+
+ul.events li .q1{
+    background-color: #40a9ff;
+}
+
+ul.events li .q0{
+    background-color: limegreen;
+}
+
+/*scrollbar*/
+*::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, .3);
+}
+
+
+.cal-tooltip {
+    padding: 10px;
+    background: #222;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.4;
+    width: 250px;
+    position: absolute;
+    z-index: 99999;
+    text-align: left;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    display: none;
+    box-sizing: border-box;
+    left: 100%;
+    top: -15px;
+}
+
+.cal-tooltip::after{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    content: "";
+    padding: 0;
+    display: block;
+    bottom: 3px;
+    left: -5px;
+    margin-left: -6px;
+    border-width: 6px;
+    border-right-color: #222;
+}
+
+.cal-tooltip ul{
+    margin-left: 10px;
+}
+
+
+.cal-tooltip ul .header{
+    font-size: 16px;
+    padding-bottom: 5px;
+}
+
+.cal-tooltip ul li{
+    padding-top: 5px;
+}
+
+.cal-tooltip ul li span{
+    margin-left: 20px;
+}
+
+.cal-tooltip .header input{
+    background-color: #222;
+    border: none;
+    color: #bbb;
+}
+
+.cal-tooltip table{
+    font-family: "Chinese Quote", "Microsoft YaHei", serif;
+}
+
+.cal-tooltip table tr{
+    padding-top: 5px;
+}
+.cal-tooltip table .header{
+    text-align: right;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.cal-tooltip table .header:after{
+    content: ':';
+}
+
+.cal-tooltip table .content{
+    padding-left: 20px;
+    font-weight: 300;
+}
+
+.open{
+    display: inline-block;
+}
+
+.cal-tooltip .edit{
+    font-size: 12px;
+    font-weight: 300;
+    border: none;
+}
+
+.cal-tooltip .edit span{
+    margin-right: 10px;
+}
+
+.cal-tooltip .dropdown-menu{
+    right: 0;
+    width: auto;
+    min-width: unset;
+    left: unset;
+    font-size: 12px;
+    text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.start-time .dropdown-menu,
+.end-time .dropdown-menu{
+    height: 250px;
+}
+
+
+.cal-tooltip .dropdown-menu li{
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.cal-tooltip .dropdown-menu li:hover{
+    background-color: #e6f7ff;
+}
+
+.cal-tooltip .edit .hour span{
+    margin-right: 0;
+}
+
+.cal-tooltip .edit .minute span{
+    margin-right: 0;
+}
+
+.cal-tooltip .dropdown{
+    display: inline-block;
+}
+
+.cal-tooltip .edit .hour:after{
+    content: ':';
+}
+
+.cal-tooltip .edit .priority .dropdown-menu{
+    min-width: 40px;
+}
+
+.cal-tooltip .edit .repeat .dropdown-menu{
+    min-width: 40px;
+}
+
+.cal-tooltip .name{
+    font-size: 16px;
+    padding: 0 0 5px 5px;
+}
+
+.calendar .selected-day{
+    border: 1px solid #1890ff;
+    background-color: #e6f7ff;
+}
+
+#add{
+    text-align: right; !important;
+    /* padding: 5px 10px; */
+    font-size: 22px;
+    color: #40a9ff;
+    width: 31px;
+    height: 31px;
+    padding: auto;
+    margin: 0 10px;
+}
+
+
+
+.cal-tooltip {
+    padding: 10px;
+    background: #222;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.4;
+    width: 250px;
+    position: absolute;
+    z-index: 99999;
+    text-align: left;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    display: none;
+    box-sizing: border-box;
+    left: 100%;
+    top: -15px;
+}
+
+.cal-tooltip::after{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    content: "";
+    padding: 0;
+    display: block;
+    bottom: 3px;
+    left: -5px;
+    margin-left: -6px;
+    border-width: 6px;
+    border-right-color: #222;
+}
+
+.cal-tooltip ul{
+    margin-left: 10px;
+}
+
+
+.cal-tooltip ul .header{
+    font-size: 16px;
+    padding-bottom: 5px;
+}
+
+.cal-tooltip ul li{
+    padding-top: 5px;
+}
+
+.cal-tooltip ul li span{
+    margin-left: 20px;
+}
+
+.cal-tooltip .header input{
+    background-color: #222;
+    border: none;
+    color: #bbb;
+}
+
+.cal-tooltip table{
+    font-family: "Chinese Quote", "Microsoft YaHei", serif;
+}
+
+.cal-tooltip table tr{
+    padding-top: 5px;
+}
+.cal-tooltip table .header{
+    text-align: right;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.cal-tooltip table .header:after{
+    content: ':';
+}
+
+.cal-tooltip table .content{
+    padding-left: 20px;
+    font-weight: 300;
+}
+
+.open{
+    display: inline-block;
+}
+
+.cal-tooltip .edit{
+    font-size: 12px;
+    font-weight: 300;
+    border: none;
+}
+
+.cal-tooltip .edit span{
+    margin-right: 10px;
+}
+
+.cal-tooltip .dropdown-menu{
+    right: 0;
+    width: auto;
+    min-width: unset;
+    left: unset;
+    font-size: 12px;
+    text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.start-time .dropdown-menu,
+.end-time .dropdown-menu{
+    height: 250px;
+}
+
+
+.cal-tooltip .dropdown-menu li{
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.cal-tooltip .dropdown-menu li:hover{
+    background-color: #e6f7ff;
+}
+
+.cal-tooltip .edit .hour span{
+    margin-right: 0;
+}
+
+.cal-tooltip .edit .minute span{
+    margin-right: 0;
+}
+
+.cal-tooltip .dropdown{
+    display: inline-block;
+}
+
+.cal-tooltip .edit .hour:after{
+    content: ':';
+}
+
+.cal-tooltip .edit .priority .dropdown-menu{
+    min-width: 40px;
+}
+
+.cal-tooltip .edit .repeat .dropdown-menu{
+    min-width: 40px;
+}
+
+.cal-tooltip .name {
+    font-size: 16px;
+    padding: 0 0 5px 5px;
+}
+
+
+#add{
+
+}
+
+.add-tooltip {
+    padding: 10px;
+    background: #222;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 1.4;
+    width: 250px;
+    position: absolute;
+    z-index: 99999;
+    text-align: left;
+    border-radius: 2px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    display: none;
+    box-sizing: border-box;
+    left: -55%;
+    top: 110%;
+}
+
+.add-tooltip::after{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    content: "";
+    padding: 0;
+    display: block;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 10px;
+    border-bottom-color: #222;
+}
+
+.add-tooltip ul{
+    margin-left: 10px;
+}
+
+
+.add-tooltip ul .header{
+    font-size: 16px;
+    padding-bottom: 5px;
+}
+
+.add-tooltip ul li{
+    padding-top: 5px;
+}
+
+.add-tooltip ul li span{
+    margin-left: 20px;
+}
+
+.add-tooltip .header input{
+    background-color: #222;
+    border: none;
+    color: #bbb;
+}
+
+.add-tooltip table{
+    font-family: "Chinese Quote", "Microsoft YaHei", serif;
+}
+
+.add-tooltip table tr{
+    padding-top: 5px;
+}
+.add-tooltip table .header{
+    text-align: right;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.add-tooltip table .header:after{
+    content: ':';
+}
+
+.add-tooltip table .content{
+    padding-left: 20px;
+    font-weight: 300;
+}
+
+.open{
+    display: inline-block;
+}
+
+.add-tooltip .edit{
+    font-size: 12px;
+    font-weight: 300;
+    border: none;
+}
+
+.add-tooltip .edit span{
+    margin-right: 10px;
+}
+
+.add-tooltip .dropdown-menu{
+    right: 0;
+    width: auto;
+    min-width: unset;
+    left: unset;
+    font-size: 12px;
+    text-align: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.start-time .dropdown-menu,
+.end-time .dropdown-menu{
+    height: 250px;
+}
+
+
+.add-tooltip .dropdown-menu li{
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.add-tooltip .dropdown-menu li:hover{
+    background-color: #e6f7ff;
+}
+
+.add-tooltip .edit .hour span{
+    margin-right: 0;
+}
+
+.add-tooltip .edit .minute span{
+    margin-right: 0;
+}
+
+.add-tooltip .dropdown{
+    display: inline-block;
+}
+
+.add-tooltip .edit .hour:after{
+    content: ':';
+}
+
+.add-tooltip .edit .priority .dropdown-menu{
+    min-width: 40px;
+}
+
+.add-tooltip .edit .repeat .dropdown-menu{
+    min-width: 40px;
+}
+
+.add-tooltip .name{
+    font-size: 16px;
+    padding: 0 0 5px 5px;
+}
+
+.add-tooltip input[type="button"] {
+    margin: 5px 90px;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 3px 8px;
+}
+
+.alert-warning{
+    padding: 1px 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

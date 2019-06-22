@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>ToDoList</title>
+
+
+          <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      <link rel="stylesheet" href="/static/css/login.css">
+
+
+</head>
+
+<body>
+
+  <body>
+<div class="container">
+	<section id="content">
+        {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+
+		<form action="" method="post" class="register">
+             {% csrf_token %}
+			<h1>Register</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td><label for="">手机号码：</label></td>
+                    <td><input type="text" placeholder="11位数的手机号码" id="mobile" name="mobile" required=""/>
+                    <span class="error_tip">提示信息</span> </td>
+                </tr>
+                <tr>
+                    <td><label for="">验证码：</label> </td>
+                    <td><input type="text" name="code" placeholder="请输入手机验证码" style="width: 140px;">
+                    &nbsp;&nbsp;
+                   <input type="button" value=" 获取验证码" id="zphone" style="width: 100px;margin-left: 10px"></td>
+                </tr>
+                <tr>
+                    <td><label>用户名：</label></td>
+                    <td><input type="text" placeholder="Username" required=""
+                               id="username" name="username" /></td>
+                </tr>
+                <tr>
+                    <td><label>密码：</label></td>
+                    <td><input type="password" name="password" placeholder="Password"  required=""
+                    id="password"/></td>
+                </tr>
+                <tr>
+                    <td><label>确认密码：</label></td>
+                    <td><input type="password" name="password" placeholder="Password"  required=""
+                    id="password-check"/> </td>
+                </tr>
+                </tbody>
+            </table>
+{#			<div>#}
+{#                <label>用户名：</label>#}
+{#				<input type="text" placeholder="Username" required="" id="username"  name="username"/>#}
+{#            </div>#}
+{#			<div>#}
+{#                <label>密码：</label>#}
+{#				<input type="password" placeholder="Password" required="" id="password" name="password"/>#}
+{#            </div>#}
+			<div>
+				<input class="register-submit" type="submit" value="注册"/>
+                <a href="/todo/accounts/login/">登录?</a>
+			</div>
+		</form>
+	</section>
+</div>
+</body>
+
+
+
+    <script  src="/static/js/login.js"></script>
+
+
+
+
+</body>
+
+</html>

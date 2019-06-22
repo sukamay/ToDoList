@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+
+
+{% block cssbody %}
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/static/css/calendar.css">
+    <script src="/static/js/calendar.js"></script>
+    <script src="/static/js/month.js"></script>
+{% endblock %}
+
+{% block mainbody %}
+    <div id="calendar"></div>
+{#    <div class="cal-tooltip" style="display: block; left: 0; top: 0;">#}
+{#        <table class="edit">#}
+{#            <tr>#}
+{#                <th class="name">水岸</th>#}
+{#            </tr>#}
+{#            <tr class="start-time">#}
+{#                <th class="header ">开始时间</th>#}
+{#                <th class="content"><span>2019/06/05</span>#}
+{#                    <div class="hour dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>10</li>#}
+{#                            <li>2</li>#}
+{#                            <li>3</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <div class="minute dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>10</li>#}
+{#                            <li>2</li>#}
+{#                            <li>3</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </th>#}
+{#            </tr>#}
+{#            <tr class="end-time">#}
+{#                <th class="header">结束时间</th>#}
+{#                <th class="content"><span>2019/06/05</span>#}
+{#                    <div class="hour dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>10</li>#}
+{#                            <li>2</li>#}
+{#                            <li>3</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    <div class="minute dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>10</li>#}
+{#                            <li>2</li>#}
+{#                            <li>3</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </th>#}
+{#            </tr>#}
+{#            <tr class="priority">#}
+{#                <th class="header">优先级</th>#}
+{#                <th class="content">#}
+{#                    <div class="minute dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>紧急</li>#}
+{#                            <li>略急</li>#}
+{#                            <li>一般</li>#}
+{#                            <li>不急</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </th>#}
+{#            </tr>#}
+{#            <tr class="repeat">#}
+{#                <th class="header">重复</th>#}
+{#                <th class="content">#}
+{#                    <div class="dropdown">#}
+{##}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>每日</li>#}
+{#                            <li>每周</li>#}
+{#                            <li>每月</li>#}
+{#                            <li>每年</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </th>#}
+{#            </tr>#}
+{#            <tr class="end-repeat">#}
+{#                <th class="header">结束重复</th>#}
+{#                <th class="content">#}
+{#                    <span>于日期</span>#}
+{#                    <div class="dropdown">#}
+{#                        <span class="dropdown-toggle" data-toggle="dropdown">no<span class="caret"></span></span>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li>Swing</li>#}
+{#                            <li>jMeter</li>#}
+{#                            <li>EJB</li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </th>#}
+{#            </tr>#}
+{#        </table>#}
+{#    </div>#}
+{% endblock %}

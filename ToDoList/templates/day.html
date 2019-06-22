@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+
+{% block cssbody %}
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/cal-heatmap.css" type="text/css">
+    <script src="/static/js/echarts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="/static/js/cal-heatmap.min.js"></script>
+    <script src="/static/js/china.js"></script>
+    <!--<script src="js/charts.js"></script>-->
+    <script src="/static/js/day.js"></script>
+{% endblock %}
+
+{% block mainbody %}
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-lg-8">
+            <div class="todo-app">
+
+                <header class="header">
+                    <h1>todos</h1>
+                    <!-- Add New Item -->
+                    <input class="new-todo" type="text" placeholder="待办事项：例如？每天睡前读十页书" autofocus>
+                </header>
+
+                <section class="main">
+                    <input class="toggle-all" type="checkbox">
+                    <!-- Show List -->
+                    <ul class="todo-list">
+                        {% for item in item_list %}
+                            {% ifequal item.status 0 %}
+                                <li id="item{{ item.id }}" style="display:block; !important;">
+                                    {% else %}
+                                <li id="item{{ item.id }}" style="display: block; !important;" class="completed">
+                            {% endifequal %}
+                        <div class="view"><input class="toggle" type="checkbox"> <label
+                                class="todo-label">{{ item.content }}</label>
+                            <button class="destroy"></button>
+                        </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <footer class="footer">
+                        <span class="todo-count"></span>
+                        <ul class="filters">
+                            <li><a class="selected" style="cursor:pointer;">总览</a></li>
+                            <li><a class="" style="cursor:pointer;">待完成</a></li>
+                            <li><a class="" style="cursor:pointer;">已完成</a></li>
+                        </ul>
+                        <button class="clear-completed">清除已完成事件</button>
+                    </footer>
+                </section>
+            </div>
+
+
+        <div class="done-panel">
+            <div class="todo-app">
+                <header class="header">
+                    <h3 class="done-list">did</h3>
+                </header>
+                <section class="main">
+
+                    <div class="panel-body col-centered heatmap-panel">
+                        <span> 过去一年间，你完成了 {{ event_sum }} 件事情！</span>
+                        <div id="cal-heatmap"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="done-panel">
+            <div class="todo-app">
+                <div id="box">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
+            <div class="todo-app">
+                <header class="header">
+                    <h3 class="date">date/time</h3>
+                </header>
+                <section class="main">
+
+                    <div class="date-list" id="date-list">
+                    <div data-toggle="collapse" data-parent="#date-list" href="#date-list-am"
+                     class="" aria-expanded="false">
+                        <span class="time-text time-head">AM</span></div>
+
+                    <ul id="date-list-am" class="collapse">
+                        {% for time in time_line %}
+                            {% ifequal time.hour 13 %}
+                                </ul>
+                                  <div data-toggle="collapse" data-parent="#date-list" href="#date-list-pm"
+                                         class="" aria-expanded="false">
+                        <span class="time-text time-head">PM</span>
+                    </div>
+                                <ul id="date-list-pm" class="collapse">
+{#                            <li><span class="time-text time-head">PM</span></li>#}
+                            {% endifequal %}
+                        <li class="time"><label><span class="time-text">{{ time.hour }}</span>
+                        <input type="text" class="" placeholder="todo" value="{{ time.content }}"></label></li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

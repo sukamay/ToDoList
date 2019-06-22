@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
+    <link href="/static/img/flogo.png"
+          type="image/png" rel="shortcut icon"/>
+    <title>ToDoList</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block cssbody %}
+        <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+        <link rel="stylesheet" href="/static/css/cal-heatmap.css" type="text/css">
+        <script src="/static/js/echarts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+        <script src="/static/js/cal-heatmap.min.js"></script>
+        <script src="/static/js/china.js"></script>
+        <!--<script src="js/charts.js"></script>-->
+        <script src="/static/js/index.js"></script>
+    {% endblock %}
+</head>
+<body>
+{% csrf_token %}
+<nav>
+    <div class="container">
+        <div class="logo"><img class="img-responsive" src="/static/img/flogo.png" alt="logo"></div>
+        <div class="nav-sec">
+            <ul class="nav-bar">
+                {% ifequal type 'day' %}
+                    <li><a href="#" class="selected">日</a></li>
+                {% else %}
+                    <li><a href="/todo/day/">日</a></li>
+                {% endifequal %}
+                {% ifequal type 'month' %}
+                    <li><a href="#" class="selected">月</a></li>
+                {% else %}
+                    <li><a href="/todo/month/">月</a></li>
+                {% endifequal %}
+                {% ifequal type 'year' %}
+                    <li><a href="#" class="selected">年</a></li>
+                {% else %}
+                    <li><a href="/todo/year/">年</a></li>
+                {% endifequal %}
+                <li class="user-info"><a href="">{{ username }}</a></li>
+            </ul>
+
+        </div>
+
+
+    </div>
+</nav>
+{% block mainbody %}
+
+{% endblock %}
+</body>
+</html>
